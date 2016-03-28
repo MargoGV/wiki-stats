@@ -37,7 +37,6 @@ class WikiGraph:
 				self._offset[i+1] = self._offset[i] + ls
 				if i % steps == 0:
 					print ('*', end = ' ')
-			print('Done!')
 		print('Граф загружен')
 
 
