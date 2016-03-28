@@ -68,10 +68,22 @@ class WikiGraph:
 
 	def hist(fname, data, bins, xlabel, ylabel, title, facecolor='green', alpha=0.5, transparent=True, **kwargs):
 		plt.clf()
-G=WikiGraph()    
-G.load_from_file('wiki_small.txt')        
+       
 
-
+def analyse_links_from_page(G):
+	numlinks_from = list(map(G.get_number_of_links_from, range(G.get_number_of_pages())))
+	Max = max(numlinks_from)
+	Min = min(numlinks_from)
+	Mx = sum(x == Max for x in numlinks_from)
+	Mn = sum(x == Min for x in numlinks_from)
+	print("Минимальное количество ссылок из статьи:", Min)
+	print("Количество статей с минимальным количеством ссылок:", Mn)
+	print("Максимальное количество ссылок из статьи:", Max)
+	print("Количество статей с максимальным количеством ссылок:", Mx)
+	for i in range(G.get_number_of_pages()):
+		if G.get_number_of_links_from(i) == Max:
+			break
+	print("Статья с наибольшим количеством ссылок:", G.get_title(i))
 
 
 if __name__ == '__main__':
@@ -83,8 +95,7 @@ if __name__ == '__main__':
 	if os.path.isfile(sys.argv[1]):
 		wg = WikiGraph()
 		wg.load_from_file(sys.argv[1])
+		analyse_links_from_page(wg)
 	else:
 		print('Файл с графом не найден')
 		sys.exit(-1)
-
-    # TODO: статистика и гистограммы
