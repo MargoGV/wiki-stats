@@ -1,4 +1,3 @@
-
 import os
 import sys
 import math
@@ -159,7 +158,7 @@ class WikiGraph:
         
                   
         
-def find_a_way(wg,start,end):
+def Way(wg,start,end):
     stack=array.array('L',[0]*wg.get_number_of_pages())
     way=[]
     stack[0]=start
@@ -215,7 +214,7 @@ if __name__ == '__main__':
         data,data2,data3=wg.analyse()
         way=[0]* wg.get_number_of_pages()
         print('Запускаем поиск в ширину')
-        way=find_a_way(wg,wg.get_id('Python'),wg.get_id('Боль'))
+        way=Way(wg,wg.get_id('Python'),wg.get_id('Список_файловых_систем'))
         print('Поиск закончен. Найден путь:')
         for i in way:
             print(wg.get_title(i))
@@ -237,4 +236,3 @@ if __name__ == '__main__':
     else:
         print('Файл с графом не найден')
         sys.exit(-1)
-
